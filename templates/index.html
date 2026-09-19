@@ -1,79 +1,2384 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>StudyLens AI</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <meta
+        name="description"
+        content="StudyLens AI - Advanced AI powered study assistant"
+    >
+
+    <meta
+        name="theme-color"
+        content="#7c6cf0"
+    >
+
+    <title>
+        StudyLens AI | Smart Learning Assistant
+    </title>
+
+    <!-- =====================================================
+         GOOGLE FONTS
+    ====================================================== -->
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=Poppins:wght@500;600;700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- =====================================================
+         ICONS
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+    >
+
+    <!-- =====================================================
+         CSS  (ui.css MUST load after style.css)
+    ====================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}"
+    >
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='ui.css') }}"
+    >
+
 </head>
+
 
 <body>
 
-    <div class="container">
 
-        <h1>StudyLens AI</h1>
+<!-- =========================================================
+     PAGE LOADER
+========================================================= -->
 
-        <p class="subtitle">
-            Turn your notes into summaries, important topics and MCQs.
-        </p>
+<div
+    class="page-loader"
+    id="pageLoader"
+>
 
-        <div class="upload-box">
+    <div class="loader-logo">
+        ✦
+    </div>
 
-            <h2>📄 Upload Your Notes</h2>
+    <div class="loader-text">
+        StudyLens AI
+    </div>
 
-            <p>Select a PDF file to analyze.</p>
+    <div class="loader-spinner"></div>
 
-            <input type="file" id="pdfFile" accept=".pdf">
+</div>
 
-            <button id="analyzeBtn">
-                Analyze Notes
-            </button>
 
+<!-- =========================================================
+     DECORATIVE BACKGROUND
+========================================================= -->
+
+<div class="background-system">
+
+    <div class="rainbow-orb orb-purple"></div>
+
+    <div class="rainbow-orb orb-blue"></div>
+
+    <div class="rainbow-orb orb-pink"></div>
+
+    <div class="rainbow-orb orb-green"></div>
+
+    <div class="rainbow-orb orb-peach"></div>
+
+    <div class="background-grid"></div>
+
+</div>
+
+
+<!-- =========================================================
+     MOBILE HEADER
+========================================================= -->
+
+<header class="mobile-header">
+
+    <button
+        type="button"
+        class="mobile-menu-button"
+        id="mobileMenuBtn"
+        aria-label="Open menu"
+    >
+
+        <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+
+    <div class="mobile-brand">
+
+        <div class="mobile-brand-logo">
+            ✦
         </div>
 
-        <div id="result" class="result-box">
+        <div>
 
-            <h2>📊 Analysis Result</h2>
+            <strong>
+                StudyLens AI
+            </strong>
 
-            <div class="section">
-
-                <h3>📝 Summary</h3>
-
-                <p id="summary">
-                    Your summary will appear here.
-                </p>
-
-            </div>
-
-            <div class="section">
-
-                <h3>⭐ Important Topics</h3>
-
-                <ul id="topics">
-                    <li>
-                        Your important topics will appear here.
-                    </li>
-                </ul>
-
-            </div>
-
-            <div class="section">
-
-                <h3>❓ MCQs</h3>
-
-                <p id="mcqs">
-                    Your generated MCQs will appear here.
-                </p>
-
-            </div>
+            <span>
+                Smart Learning
+            </span>
 
         </div>
 
     </div>
 
-    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <div class="mobile-ai-dot">
+        <span></span>
+    </div>
+
+</header>
+
+
+<!-- =========================================================
+     MOBILE OVERLAY
+========================================================= -->
+
+<div
+    class="mobile-overlay"
+    id="mobileOverlay"
+></div>
+
+
+<!-- =========================================================
+     SIDEBAR
+========================================================= -->
+
+<aside
+    class="sidebar"
+    id="sidebar"
+>
+
+
+    <!-- ---------- BRAND ---------- -->
+
+    <div class="sidebar-brand">
+
+        <div class="sidebar-logo">
+
+            <span>
+                ✦
+            </span>
+
+        </div>
+
+
+        <div class="sidebar-brand-text">
+
+            <h1>
+                StudyLens AI
+            </h1>
+
+            <p>
+                Smart study
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ---------- AI STATUS CARD ---------- -->
+
+    <div class="sidebar-ai-status">
+
+        <div class="online-dot"></div>
+
+        <div>
+
+            <strong>
+                AI Ready
+            </strong>
+
+            <span>
+                Learning engine online
+            </span>
+
+        </div>
+
+        <div class="status-check">
+            ✓
+        </div>
+
+    </div>
+
+
+    <!-- ---------- NAVIGATION ---------- -->
+
+    <div class="sidebar-section-title">
+        Workspace
+    </div>
+
+
+    <nav class="sidebar-navigation">
+
+
+        <!-- DASHBOARD -->
+
+        <button
+            type="button"
+            class="sidebar-nav-item nav-link active"
+            data-target="dashboardSection"
+            href="#dashboardSection"
+        >
+
+            <span class="nav-color purple"></span>
+
+            <span class="nav-icon">
+                <i class="fa-solid fa-house"></i>
+            </span>
+
+            <span class="nav-label">
+                Dashboard
+            </span>
+
+            <span class="nav-arrow">
+                →
+            </span>
+
+        </button>
+
+
+        <!-- AI SUMMARY -->
+
+        <button
+            type="button"
+            class="sidebar-nav-item nav-link"
+            data-target="summarySection"
+            href="#summarySection"
+        >
+
+            <span class="nav-color blue"></span>
+
+            <span class="nav-icon">
+                <i class="fa-solid fa-wand-magic-sparkles"></i>
+            </span>
+
+            <span class="nav-label">
+                AI Summary
+            </span>
+
+            <span class="nav-arrow">
+                →
+            </span>
+
+        </button>
+
+
+        <!-- EXAM FOCUS -->
+
+        <button
+            type="button"
+            class="sidebar-nav-item nav-link"
+            data-target="topicsSection"
+            href="#topicsSection"
+        >
+
+            <span class="nav-color red"></span>
+
+            <span class="nav-icon">
+                <i class="fa-solid fa-bullseye"></i>
+            </span>
+
+            <span class="nav-label">
+                Exam Focus
+            </span>
+
+            <span class="nav-arrow">
+                →
+            </span>
+
+        </button>
+
+
+        <!-- AI MCQs -->
+
+        <button
+            type="button"
+            class="sidebar-nav-item nav-link"
+            data-target="mcqSection"
+            href="#mcqSection"
+        >
+
+            <span class="nav-color orange"></span>
+
+            <span class="nav-icon">
+                <i class="fa-solid fa-circle-question"></i>
+            </span>
+
+            <span class="nav-label">
+                AI MCQs
+            </span>
+
+            <span class="nav-arrow">
+                →
+            </span>
+
+        </button>
+
+
+        <!-- SMART REVISION -->
+
+        <button
+            type="button"
+            class="sidebar-nav-item nav-link"
+            data-target="revisionSection"
+            href="#revisionSection"
+        >
+
+            <span class="nav-color green"></span>
+
+            <span class="nav-icon">
+                <i class="fa-solid fa-brain"></i>
+            </span>
+
+            <span class="nav-label">
+                Smart Revision
+            </span>
+
+            <span class="nav-arrow">
+                →
+            </span>
+
+        </button>
+
+
+    </nav>
+
+
+    <!-- ---------- STUDY TOOLS ---------- -->
+
+    <div class="sidebar-section-title">
+        Study tools
+    </div>
+
+
+    <div class="sidebar-tools">
+
+
+        <!-- Weak Topic Finder: reads currentMCQs / mcqAnswers,
+             which already exist client-side. No new API call. -->
+
+        <button
+            type="button"
+            class="sidebar-tool purple-tool"
+            id="weakTopicBtn"
+            data-action="weakTopic"
+        >
+
+            <span>
+                🔍
+            </span>
+
+            <div>
+
+                <strong>
+                    Weak Topic Finder
+                </strong>
+
+                <small>
+                    Find topics to revise
+                </small>
+
+            </div>
+
+        </button>
+
+
+        <!-- Quick Revision: inline onclick keeps this working
+             without depending on script.js's own quickRevisionBtn
+             lookup (which needs an id this element doesn't have). -->
+
+        <button
+            type="button"
+            class="sidebar-tool pink-tool"
+            data-action="quickRevision"
+            onclick="document.getElementById('revisionSection').scrollIntoView({behavior:'smooth',block:'start'});document.getElementById('sidebar').classList.remove('open');document.getElementById('mobileOverlay').classList.remove('show');"
+        >
+
+            <span>
+                ⚡
+            </span>
+
+            <div>
+
+                <strong>
+                    Quick Revision
+                </strong>
+
+                <small>
+                    Jump to your revision points
+                </small>
+
+            </div>
+
+        </button>
+
+
+    </div>
+
+
+    <!-- ---------- SIDEBAR BOTTOM ---------- -->
+
+    <div class="sidebar-bottom">
+
+        <div class="sidebar-version">
+
+            <span>
+                StudyLens AI
+            </span>
+
+            <strong>
+                v2.0
+            </strong>
+
+        </div>
+
+    </div>
+
+
+</aside>
+
+
+<!-- =========================================================
+     MAIN
+========================================================= -->
+
+<main
+    class="main"
+    id="mainContent"
+>
+
+
+    <!-- =====================================================
+         TOP BAR
+    ====================================================== -->
+
+    <div class="topbar">
+
+
+        <div class="topbar-left">
+
+            <div class="breadcrumb">
+
+                <span>
+                    StudyLens AI
+                </span>
+
+                <i class="fa-solid fa-chevron-right"></i>
+
+                <strong>
+                    Learning workspace
+                </strong>
+
+            </div>
+
+
+            <div class="topbar-date">
+
+                <span class="small-sparkle">
+                    ✦
+                </span>
+
+                Turn any PDF into study material
+
+            </div>
+
+        </div>
+
+
+        <div class="topbar-right">
+
+
+            <div class="ai-engine-badge">
+
+                <span class="engine-pulse"></span>
+
+                <span>
+                    AI engine
+                </span>
+
+                <strong>
+                    Ready
+                </strong>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="topbar-icon-button"
+                id="helpBtn"
+                title="How it works"
+                aria-label="How it works"
+            >
+
+                <i class="fa-regular fa-circle-question"></i>
+
+            </button>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================================
+         DASHBOARD
+    ====================================================== -->
+
+    <section
+        class="dashboard-section"
+        id="dashboardSection"
+    >
+
+
+        <!-- =================================================
+             HERO
+        ================================================== -->
+
+        <section class="hero">
+
+
+            <div class="hero-background-shape shape-one"></div>
+
+            <div class="hero-background-shape shape-two"></div>
+
+            <div class="hero-background-shape shape-three"></div>
+
+
+            <div class="hero-left">
+
+
+                <div class="hero-mini-badge">
+
+                    <span class="sparkle">
+                        ✨
+                    </span>
+
+                    AI powered study platform
+
+                </div>
+
+
+                <h2 class="hero-title">
+
+                    Study smarter.
+
+                    <br>
+
+                    <span class="gradient-word">
+                        Not harder.
+                    </span>
+
+                </h2>
+
+
+                <p class="hero-description">
+
+                    Turn your lecture notes into
+                    <strong>beautiful summaries</strong>,
+                    important exam topics, smart revision
+                    points and interactive MCQs.
+
+                </p>
+
+
+                <!-- HERO FEATURES -->
+
+                <div class="hero-feature-list">
+
+
+                    <div class="hero-feature">
+
+                        <span class="feature-check purple-check">
+                            📝
+                        </span>
+
+                        <span>
+                            AI Summary
+                        </span>
+
+                    </div>
+
+
+                    <div class="hero-feature">
+
+                        <span class="feature-check blue-check">
+                            🎯
+                        </span>
+
+                        <span>
+                            Exam Focus
+                        </span>
+
+                    </div>
+
+
+                    <div class="hero-feature">
+
+                        <span class="feature-check green-check">
+                            🧠
+                        </span>
+
+                        <span>
+                            Smart Revision
+                        </span>
+
+                    </div>
+
+
+                    <div class="hero-feature">
+
+                        <span class="feature-check orange-check">
+                            ❓
+                        </span>
+
+                        <span>
+                            Practice MCQs
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- HERO STATS -->
+
+                <div class="hero-stats">
+
+
+                    <div class="hero-stat">
+
+                        <strong>
+                            PDF
+                        </strong>
+
+                        <span>
+                            Any lecture notes
+                        </span>
+
+                    </div>
+
+
+                    <div class="hero-stat">
+
+                        <strong>
+                            4 tools
+                        </strong>
+
+                        <span>
+                            From one upload
+                        </span>
+
+                    </div>
+
+
+                    <div class="hero-stat">
+
+                        <strong>
+                            20 MB
+                        </strong>
+
+                        <span>
+                            Max file size
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!-- =================================================
+                 HERO AI VISUAL  (pure CSS / emoji, no images)
+            ================================================== -->
+
+            <div class="hero-ai-visual">
+
+
+                <div class="ai-ring ring-one"></div>
+
+                <div class="ai-ring ring-two"></div>
+
+                <div class="ai-ring ring-three"></div>
+
+
+                <div class="ai-glow"></div>
+
+
+                <div class="ai-brain">
+
+                    🧠
+
+                </div>
+
+
+                <!-- FLOATING CARDS -->
+
+                <div class="floating-ai-card card-summary">
+
+                    <span class="floating-icon blue-bg">
+                        📝
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Summary
+                        </strong>
+
+                        <small>
+                            Written for you
+                        </small>
+
+                    </div>
+
+                    <span class="floating-check">
+                        ✓
+                    </span>
+
+                </div>
+
+
+                <div class="floating-ai-card card-exam">
+
+                    <span class="floating-icon red-bg">
+                        🎯
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Exam Focus
+                        </strong>
+
+                        <small>
+                            Topics that matter
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+                <div class="floating-ai-card card-mcq">
+
+                    <span class="floating-icon orange-bg">
+                        ❓
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            AI MCQs
+                        </strong>
+
+                        <small>
+                            Practice ready
+                        </small>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+        </section>
+
+
+        <!-- =================================================
+             UPLOAD SECTION
+        ================================================== -->
+
+        <section
+            class="upload-section"
+            id="uploadSection"
+        >
+
+
+            <div class="section-heading">
+
+
+                <div class="section-label purple-label">
+
+                    <span>
+                        ✦
+                    </span>
+
+                    Step one
+
+                </div>
+
+
+                <h2>
+                    Upload your study material
+                </h2>
+
+
+                <p>
+                    Give StudyLens AI your PDF and it will turn
+                    your notes into exam-ready content.
+                </p>
+
+
+            </div>
+
+
+            <!-- UPLOAD CARD -->
+
+            <div class="upload-card">
+
+
+                <div class="upload-main upload-box">
+
+
+                    <!-- UPLOAD ICON -->
+
+                    <div class="big-upload-icon">
+
+                        <div class="upload-icon-circle">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+
+                        <span class="upload-icon-star">
+                            ✦
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Drop your PDF here
+                    </h3>
+
+
+                    <p class="upload-description">
+                        Lecture notes, textbook chapters,
+                        assignments or handwritten scans.
+                    </p>
+
+
+                    <div class="upload-limit">
+                        <i class="fa-regular fa-file-pdf"></i>
+                        PDF only, up to 20 MB
+                    </div>
+
+
+                    <!-- FILE INPUT  (ID used by script.js) -->
+
+                    <input
+                        type="file"
+                        id="pdfFile"
+                        accept=".pdf,application/pdf"
+                        hidden
+                    >
+
+
+                    <!-- CHOOSE FILE -->
+
+                    <label
+                        for="pdfFile"
+                        class="choose-file-button"
+                    >
+
+                        <span class="button-icon">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </span>
+
+                        <span>
+                            Choose a PDF
+                        </span>
+
+                        <span class="button-arrow">
+                            →
+                        </span>
+
+                    </label>
+
+
+                    <div class="selected-file-card">
+
+                        <div class="selected-file-icon">
+                            <i class="fa-solid fa-file-pdf"></i>
+                        </div>
+
+
+                        <div class="selected-file-details">
+
+                            <strong id="selectedFileName">
+                                No PDF selected
+                            </strong>
+
+                            <span id="selectedFileInfo">
+                                Choose a PDF to begin
+                            </span>
+
+                        </div>
+
+
+                        <div class="file-ready-icon">
+                            ○
+                        </div>
+
+                    </div>
+
+
+                    <!-- ANALYZE BUTTON  (ID used by script.js) -->
+
+                    <button
+                        type="button"
+                        class="analyze-button"
+                        id="analyzeBtn"
+                    >
+
+                        <span class="analyze-icon">
+                            ✨
+                        </span>
+
+                        <span class="analyze-text">
+                            Analyze with AI
+                        </span>
+
+                        <span class="analyze-arrow">
+                            →
+                        </span>
+
+                    </button>
+
+
+                    <div class="document-status">
+
+                        <span class="status-small-dot"></span>
+
+                        <span id="documentStatus">
+                            Waiting for your PDF
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- =================================================
+                     WHAT YOU GET
+                ================================================== -->
+
+                <div class="upload-benefits">
+
+
+                    <div class="benefits-title">
+                        What you get back
+                    </div>
+
+
+                    <div class="benefit">
+
+
+                        <div class="benefit-icon blue-benefit">
+                            📝
+                        </div>
+
+
+                        <div class="benefit-text">
+
+                            <strong>
+                                Smart summary
+                            </strong>
+
+                            <p>
+                                Structured explanations with
+                                headings and key concepts.
+                            </p>
+
+                        </div>
+
+
+                        <span class="benefit-check">
+                            ✓
+                        </span>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+
+                        <div class="benefit-icon red-benefit">
+                            🎯
+                        </div>
+
+
+                        <div class="benefit-text">
+
+                            <strong>
+                                Exam focus
+                            </strong>
+
+                            <p>
+                                The concepts most likely to
+                                show up in your paper.
+                            </p>
+
+                        </div>
+
+
+                        <span class="benefit-check">
+                            ✓
+                        </span>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+
+                        <div class="benefit-icon green-benefit">
+                            🧠
+                        </div>
+
+
+                        <div class="benefit-text">
+
+                            <strong>
+                                Smart revision
+                            </strong>
+
+                            <p>
+                                Short points you can read
+                                the night before.
+                            </p>
+
+                        </div>
+
+
+                        <span class="benefit-check">
+                            ✓
+                        </span>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+
+                        <div class="benefit-icon orange-benefit">
+                            ❓
+                        </div>
+
+
+                        <div class="benefit-text">
+
+                            <strong>
+                                Practice MCQs
+                            </strong>
+
+                            <p>
+                                Questions written from your
+                                own material.
+                            </p>
+
+                        </div>
+
+
+                        <span class="benefit-check">
+                            ✓
+                        </span>
+
+                    </div>
+
+
+                    <div class="benefit">
+
+
+                        <div class="benefit-icon pink-benefit">
+                            ⚡
+                        </div>
+
+
+                        <div class="benefit-text">
+
+                            <strong>
+                                Less reading time
+                            </strong>
+
+                            <p>
+                                Spend it on the parts you
+                                actually find hard.
+                            </p>
+
+                        </div>
+
+
+                        <span class="benefit-check">
+                            ✓
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             QUICK ACTIONS
+        ================================================== -->
+
+        <section class="quick-actions-section">
+
+
+            <div class="section-heading">
+
+
+                <div class="section-label pink-label">
+
+                    <span>
+                        ✨
+                    </span>
+
+                    Study modes
+
+                </div>
+
+
+                <h2>
+                    Four ways to use your notes
+                </h2>
+
+
+                <p>
+                    Every upload unlocks all four. Jump straight
+                    to the one you need.
+                </p>
+
+
+            </div>
+
+
+            <div class="action-grid">
+
+
+                <!-- SUMMARY -->
+
+                <button
+                    type="button"
+                    class="action-card action-blue nav-link"
+                    data-target="summarySection"
+                    href="#summarySection"
+                >
+
+                    <div class="action-top">
+
+                        <span class="action-number">
+                            Read
+                        </span>
+
+                        <span class="action-icon">
+                            📝
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        AI Summary
+                    </h3>
+
+
+                    <p>
+                        Long notes rewritten into clear,
+                        structured study content.
+                    </p>
+
+
+                    <span class="action-button">
+                        Open summary
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </button>
+
+
+                <!-- EXAM FOCUS -->
+
+                <button
+                    type="button"
+                    class="action-card action-red nav-link"
+                    data-target="topicsSection"
+                    href="#topicsSection"
+                >
+
+                    <div class="action-top">
+
+                        <span class="action-number">
+                            Prioritise
+                        </span>
+
+                        <span class="action-icon">
+                            🎯
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Exam Focus
+                    </h3>
+
+
+                    <p>
+                        The topics worth your time when
+                        the exam is close.
+                    </p>
+
+
+                    <span class="action-button">
+                        View topics
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </button>
+
+
+                <!-- REVISION -->
+
+                <button
+                    type="button"
+                    class="action-card action-green nav-link"
+                    data-target="revisionSection"
+                    href="#revisionSection"
+                >
+
+                    <div class="action-top">
+
+                        <span class="action-number">
+                            Recall
+                        </span>
+
+                        <span class="action-icon">
+                            🧠
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Smart Revision
+                    </h3>
+
+
+                    <p>
+                        Bite-sized points for a fast
+                        final run-through.
+                    </p>
+
+
+                    <span class="action-button">
+                        Start revision
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </button>
+
+
+                <!-- MCQ -->
+
+                <button
+                    type="button"
+                    class="action-card action-orange nav-link"
+                    data-target="mcqSection"
+                    href="#mcqSection"
+                >
+
+                    <div class="action-top">
+
+                        <span class="action-number">
+                            Test
+                        </span>
+
+                        <span class="action-icon">
+                            ❓
+                        </span>
+
+                    </div>
+
+
+                    <h3>
+                        Practice MCQs
+                    </h3>
+
+
+                    <p>
+                        Check what actually stuck with
+                        instant feedback.
+                    </p>
+
+
+                    <span class="action-button">
+                        Practise now
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </span>
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         RESULTS AREA
+    ====================================================== -->
+
+    <section
+        class="results-area"
+        id="resultsArea"
+    >
+
+
+        <!-- =================================================
+             RESULTS HEADING
+        ================================================== -->
+
+        <div class="results-heading">
+
+
+            <div>
+
+                <div class="section-label purple-label">
+
+                    <span>
+                        ✦
+                    </span>
+
+                    Your results
+
+                </div>
+
+
+                <h2>
+                    Your learning workspace
+                </h2>
+
+
+                <p>
+                    Everything StudyLens AI generates from your
+                    PDF appears below.
+                </p>
+
+            </div>
+
+
+            <div class="results-ready">
+
+                <span></span>
+
+                AI Ready
+
+            </div>
+
+
+        </div>
+
+
+        <!-- =================================================
+             EMPTY STATE
+        ================================================== -->
+
+        <div
+            class="empty-state"
+            id="emptyState"
+        >
+
+            <div class="empty-illustration">
+
+                <div class="empty-circle circle-purple">
+                    ✦
+                </div>
+
+                <div class="empty-circle circle-blue">
+                    📚
+                </div>
+
+                <div class="empty-circle circle-pink">
+                    🧠
+                </div>
+
+            </div>
+
+
+            <h3>
+                Nothing to study yet
+            </h3>
+
+
+            <p>
+                Upload a PDF above and press
+                <strong>Analyze with AI</strong>
+                to fill this workspace.
+            </p>
+
+
+            <button
+                type="button"
+                class="empty-scroll-button"
+                onclick="document.getElementById('uploadSection').scrollIntoView({behavior:'smooth'})"
+            >
+                <i class="fa-solid fa-arrow-up"></i>
+                Upload study material
+            </button>
+
+        </div>
+
+
+        <!-- =================================================
+             SMART SUMMARY
+        ================================================== -->
+
+        <section
+            class="result-section"
+            id="summarySection"
+        >
+
+
+            <div class="result-card summary-result-card">
+
+
+                <div class="result-card-top blue-top-border">
+
+
+                    <div class="result-title-area">
+
+
+                        <div class="result-icon blue-result-icon">
+                            📝
+                        </div>
+
+
+                        <div>
+
+                            <span class="result-label blue-label">
+                                Written by AI
+                            </span>
+
+                            <h2>
+                                Smart Summary
+                            </h2>
+
+                            <p>
+                                Your material, rewritten for
+                                understanding.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="copy-button"
+                        id="copyBtn"
+                    >
+
+                        <i class="fa-regular fa-copy"></i>
+
+                        Copy summary
+
+                    </button>
+
+
+                </div>
+
+
+                <div
+                    class="summary-content"
+                    id="summary"
+                >
+
+                    <div class="result-placeholder">
+
+                        <div class="placeholder-icon blue-placeholder">
+                            📝
+                        </div>
+
+                        <h3>
+                            Your summary appears here
+                        </h3>
+
+                        <p>
+                            Analyze a PDF to generate it.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             IMPORTANT TOPICS
+        ================================================== -->
+
+        <section
+            class="result-section"
+            id="topicsSection"
+        >
+
+
+            <div class="result-card topics-result-card">
+
+
+                <div class="result-card-top red-top-border">
+
+
+                    <div class="result-title-area">
+
+
+                        <div class="result-icon red-result-icon">
+                            🎯
+                        </div>
+
+
+                        <div>
+
+                            <span class="result-label red-label">
+                                Exam preparation
+                            </span>
+
+                            <h2>
+                                Important Topics
+                            </h2>
+
+                            <p>
+                                Pulled from your notes and
+                                ranked for revision.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="topic-count-badge">
+                        <span id="topicCount">
+                            0
+                        </span>
+
+                        topics
+                    </div>
+
+
+                </div>
+
+
+                <div
+                    class="topics-grid"
+                    id="importantTopics"
+                >
+
+                    <div class="result-placeholder">
+
+                        <div class="placeholder-icon red-placeholder">
+                            🎯
+                        </div>
+
+                        <h3>
+                            Your exam topics appear here
+                        </h3>
+
+                        <p>
+                            Analyze a PDF to find them.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             SMART REVISION
+        ================================================== -->
+
+        <section
+            class="result-section"
+            id="revisionSection"
+        >
+
+
+            <div class="result-card revision-result-card">
+
+
+                <div class="result-card-top green-top-border">
+
+
+                    <div class="result-title-area">
+
+
+                        <div class="result-icon green-result-icon">
+                            🧠
+                        </div>
+
+
+                        <div>
+
+                            <span class="result-label green-label">
+                                Fast recall
+                            </span>
+
+                            <h2>
+                                Smart Revision
+                            </h2>
+
+                            <p>
+                                Short points for the night
+                                before the exam.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="revision-badge">
+                        ⚡ Quick mode
+                    </div>
+
+
+                </div>
+
+
+                <div
+                    class="revision-container"
+                    id="revisionContainer"
+                >
+
+                    <div class="result-placeholder">
+
+                        <div class="placeholder-icon green-placeholder">
+                            🧠
+                        </div>
+
+                        <h3>
+                            Your revision points appear here
+                        </h3>
+
+                        <p>
+                            Analyze a PDF to build them.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MCQs
+        ================================================== -->
+
+        <section
+            class="result-section mcq-section"
+            id="mcqSection"
+        >
+
+
+            <div class="result-card mcq-result-card">
+
+
+                <div class="result-card-top orange-top-border">
+
+
+                    <div class="result-title-area">
+
+
+                        <div class="result-icon orange-result-icon">
+                            ❓
+                        </div>
+
+
+                        <div>
+
+                            <span class="result-label orange-label">
+                                Interactive practice
+                            </span>
+
+                            <h2>
+                                Practice MCQs
+                            </h2>
+
+                            <p>
+                                Answer, get feedback, see
+                                your score build up.
+                            </p>
+
+                        </div>
+
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="new-mcq-button"
+                        id="newMcqBtn"
+                    >
+
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+
+                        New MCQs
+
+                    </button>
+
+
+                </div>
+
+
+                <!-- QUIZ DASHBOARD -->
+
+                <div class="quiz-dashboard">
+
+
+                    <div class="quiz-stat-box purple-stat">
+
+                        <div class="quiz-stat-icon">
+                            ❓
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Answered
+                            </span>
+
+                            <strong id="quizProgress">
+                                0 / 0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quiz-stat-box green-stat">
+
+                        <div class="quiz-stat-icon">
+                            🏆
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Correct
+                            </span>
+
+                            <strong id="quizScore">
+                                0
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="quiz-progress-box">
+
+
+                        <div class="quiz-progress-header">
+
+                            <span>
+                                Your progress
+                            </span>
+
+                            <strong id="quizPercentage">
+                                0%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="quiz-progress-track">
+
+                            <div
+                                class="quiz-progress-bar"
+                                id="quizProgressBar"
+                            ></div>
+
+                        </div>
+
+
+                    </div>
+
+
+                </div>
+
+
+                <!-- MCQ CONTAINER -->
+
+                <div
+                    class="mcq-container"
+                    id="mcqContainer"
+                >
+
+                    <div class="result-placeholder">
+
+                        <div class="placeholder-icon orange-placeholder">
+                            ❓
+                        </div>
+
+                        <h3>
+                            Your quiz appears here
+                        </h3>
+
+                        <p>
+                            Analyze a PDF to generate questions.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             WEAK TOPIC FINDER — client-side only
+        ================================================== -->
+
+        <section
+            class="result-section weak-topic-section"
+            id="weakTopicSection"
+        >
+
+            <div class="result-card weak-topic-result-card">
+
+                <div class="result-card-top purple-top-border">
+
+                    <div class="result-title-area">
+
+                        <div class="result-icon purple-result-icon">
+                            🔍
+                        </div>
+
+                        <div>
+
+                            <span class="result-label purple-label">
+                                Performance insights
+                            </span>
+
+                            <h2>
+                                Weak Topic Finder
+                            </h2>
+
+                            <p>
+                                Built from your own MCQ answers.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div
+                    class="weak-topic-container"
+                    id="weakTopicContainer"
+                ></div>
+
+            </div>
+
+        </section>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         FINAL CTA
+    ====================================================== -->
+
+    <section class="final-cta">
+
+
+        <div class="cta-rainbow rainbow-red"></div>
+
+        <div class="cta-rainbow rainbow-blue"></div>
+
+        <div class="cta-rainbow rainbow-green"></div>
+
+        <div class="cta-rainbow rainbow-purple"></div>
+
+
+        <div class="cta-content">
+
+
+            <div class="cta-icon">
+                🧠
+            </div>
+
+
+            <div>
+
+                <span>
+                    Study with intelligence
+                </span>
+
+                <h2>
+                    Your notes.
+                    <strong>
+                        Smarter.
+                    </strong>
+                </h2>
+
+                <p>
+                    Learn faster, revise better, practise more.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            type="button"
+            class="back-top-button"
+            id="backToTop"
+            onclick="window.scrollTo({top:0,behavior:'smooth'})"
+        >
+
+            <i class="fa-solid fa-arrow-up"></i>
+
+            Back to top
+
+        </button>
+
+
+    </section>
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="footer">
+
+
+        <div class="footer-brand">
+
+            <div class="footer-logo">
+                ✦
+            </div>
+
+            <div>
+
+                <strong>
+                    StudyLens AI
+                </strong>
+
+                <span>
+                    Intelligent learning assistant
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-center">
+
+            <span>
+                Built for smarter studying
+            </span>
+
+            <span class="footer-dot">
+                •
+            </span>
+
+            <span>
+                AI powered
+            </span>
+
+            <span class="footer-dot">
+                •
+            </span>
+
+            <span>
+                Student friendly
+            </span>
+
+        </div>
+
+
+        <div class="footer-right">
+
+            <span>
+                v2.0
+            </span>
+
+        </div>
+
+
+    </footer>
+
+
+</main>
+
+
+<!-- =========================================================
+     HELP MODAL
+========================================================= -->
+
+<div
+    class="modal-overlay"
+    id="helpModal"
+>
+
+
+    <div class="help-modal">
+
+
+        <button
+            type="button"
+            class="modal-close"
+            id="closeHelpBtn"
+            aria-label="Close"
+        >
+            ×
+        </button>
+
+
+        <div class="modal-icon">
+            💡
+        </div>
+
+
+        <h2>
+            How StudyLens AI works
+        </h2>
+
+
+        <p>
+            Upload a study PDF. StudyLens AI reads it and builds
+            a summary, exam topics, revision points and a quiz
+            from your own material.
+        </p>
+
+
+        <div class="modal-steps">
+
+
+            <div class="modal-step">
+
+                <span>
+                    01
+                </span>
+
+                <div>
+
+                    <strong>
+                        Upload a PDF
+                    </strong>
+
+                    <small>
+                        Drag it in or choose a file.
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-step">
+
+                <span>
+                    02
+                </span>
+
+                <div>
+
+                    <strong>
+                        Analyze with AI
+                    </strong>
+
+                    <small>
+                        Takes a few seconds. Ctrl + Enter also works.
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-step">
+
+                <span>
+                    03
+                </span>
+
+                <div>
+
+                    <strong>
+                        Study
+                    </strong>
+
+                    <small>
+                        Use the sidebar to move between results.
+                    </small>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <button
+            type="button"
+            class="modal-ok-button"
+            id="closeHelpBtn2"
+            onclick="document.getElementById('helpModal').classList.remove('show')"
+        >
+            Got it ✨
+        </button>
+
+
+    </div>
+
+</div>
+
+
+<!-- =========================================================
+     TOAST CONTAINER
+========================================================= -->
+
+<div
+    class="toast-container"
+    id="toastContainer"
+></div>
+
+
+<!-- =========================================================
+     JAVASCRIPT  — unchanged
+========================================================= -->
+
+<script
+    src="{{ url_for('static', filename='script.js') }}"
+></script>
+
+
+<!-- =========================================================
+     PAGE LOADER
+========================================================= -->
+
+<script>
+
+    window.addEventListener("load", function () {
+
+        var loader =
+            document.getElementById("pageLoader");
+
+        if (loader) {
+
+            setTimeout(function () {
+
+                loader.classList.add("hidden");
+
+            }, 500);
+
+        }
+
+    });
+
+</script>
+
+
+<!-- =========================================================
+     OPTIONAL UI POLISH
+========================================================= -->
+
+<script>
+
+(function () {
+
+    "use strict";
+
+    var emptyState =
+        document.getElementById("emptyState");
+
+    var summaryEl =
+        document.getElementById("summary");
+
+    var topicsEl =
+        document.getElementById("importantTopics");
+
+    var topicCountEl =
+        document.getElementById("topicCount");
+
+    var progressBar =
+        document.getElementById("quizProgressBar");
+
+    var percentEl =
+        document.getElementById("quizPercentage");
+
+
+    if (!("MutationObserver" in window)) {
+        return;
+    }
+
+
+    function refreshEmptyState() {
+
+        if (!emptyState || !summaryEl) {
+            return;
+        }
+
+        var stillEmpty =
+            summaryEl.querySelector(".result-placeholder") ||
+            summaryEl.querySelector(".empty-state");
+
+        if (stillEmpty) {
+            emptyState.classList.remove("hidden");
+        } else {
+            emptyState.classList.add("hidden");
+        }
+    }
+
+
+    function refreshTopicCount() {
+
+        if (!topicsEl || !topicCountEl) {
+            return;
+        }
+
+        topicCountEl.textContent =
+            topicsEl.querySelectorAll(".topic-card").length;
+    }
+
+
+    function refreshPercent() {
+
+        if (!progressBar || !percentEl) {
+            return;
+        }
+
+        var width =
+            parseFloat(progressBar.style.width);
+
+        if (isNaN(width)) {
+            width = 0;
+        }
+
+        percentEl.textContent =
+            Math.round(width) + "%";
+    }
+
+
+    if (summaryEl) {
+
+        new MutationObserver(refreshEmptyState)
+            .observe(summaryEl, {
+                childList: true,
+                subtree: true
+            });
+    }
+
+
+    if (topicsEl) {
+
+        new MutationObserver(refreshTopicCount)
+            .observe(topicsEl, {
+                childList: true,
+                subtree: true
+            });
+    }
+
+
+    if (progressBar) {
+
+        new MutationObserver(refreshPercent)
+            .observe(progressBar, {
+                attributes: true,
+                attributeFilter: ["style"]
+            });
+    }
+
+
+    refreshEmptyState();
+    refreshTopicCount();
+    refreshPercent();
+
+})();
+
+</script>
+
 
 </body>
+
 </html>
