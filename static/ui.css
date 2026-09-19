@@ -1,0 +1,1439 @@
+/* ================================================================
+   STUDYLENS AI — sunrise.css
+   Warm peach/cream premium theme — soft blurred spheres, one
+   confident orange accent, light airy surfaces.
+   ----------------------------------------------------------------
+   Loads AFTER style.css (swap the current theme <link> for this
+   file). Matches every class script.js actually renders. No extra
+   font import needed — reuses the Poppins/Inter already linked.
+================================================================ */
+
+:root {
+
+    --orange:       #FF8C52;
+    --orange-deep:  #E86A2E;
+    --orange-tint:  #FFE7D6;
+
+    --peach:        #FFB88A;
+    --sun:          #FFD8AE;
+
+    --cream:        #FFF7EE;
+    --paper:        #FFFFFF;
+
+    --ink:          #2E241C;
+    --ink-soft:     #6B5B4E;
+    --ink-muted:    #A79684;
+
+    --line:         #F1E2D0;
+
+    --font-display: "Poppins", "Inter", sans-serif;
+    --font-body:    "Inter", sans-serif;
+
+    --shadow-small: 0 6px 20px rgba(232, 106, 46, 0.08);
+    --shadow:       0 16px 40px rgba(232, 106, 46, 0.12);
+    --shadow-large: 0 26px 60px rgba(232, 106, 46, 0.16);
+
+}
+
+
+/* ================================================================
+   CANVAS — cream with soft floating spheres
+================================================================ */
+
+body {
+    font-family: var(--font-body);
+    color: var(--ink);
+    background: var(--cream);
+}
+
+::selection {
+    background: var(--orange-tint);
+    color: var(--orange-deep);
+}
+
+/* re-purpose the existing orb elements as the soft peach spheres */
+
+.background-system {
+    display: block;
+    opacity: 1;
+}
+
+.rainbow-orb {
+    display: block !important;
+    opacity: 0.35;
+    background: var(--peach) !important;
+}
+
+.orb-blue,
+.orb-green {
+    background: var(--sun) !important;
+    opacity: 0.28;
+}
+
+.orb-pink {
+    background: var(--orange) !important;
+    opacity: 0.18;
+}
+
+.background-grid {
+    display: none;
+}
+
+
+/* ================================================================
+   LOADER
+================================================================ */
+
+.page-loader {
+    background: var(--cream);
+}
+
+.loader-logo {
+    background: linear-gradient(135deg, var(--orange), var(--peach));
+    border-radius: 20px;
+    box-shadow: var(--shadow);
+}
+
+.loader-text {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.loader-spinner {
+    border-color: var(--line);
+    border-top-color: var(--orange);
+    border-right-color: var(--peach);
+}
+
+
+/* ================================================================
+   SIDEBAR — light, airy, one accent
+================================================================ */
+
+.sidebar {
+    background: rgba(255,255,255,0.9);
+    border-right: none;
+    box-shadow: 1px 0 0 var(--line);
+}
+
+.sidebar-brand-text h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.sidebar-brand-text p {
+    color: var(--ink-muted);
+}
+
+.sidebar-logo {
+    background: linear-gradient(135deg, var(--orange), var(--peach));
+    border-radius: 14px;
+    box-shadow: 0 8px 18px rgba(232,106,46,0.25);
+}
+
+.sidebar-ai-status {
+    background: var(--orange-tint);
+    border: none;
+}
+
+.sidebar-ai-status strong {
+    color: var(--orange-deep);
+}
+
+.sidebar-ai-status span {
+    color: var(--ink-muted);
+}
+
+.online-dot {
+    background: var(--orange);
+    box-shadow: 0 0 0 4px rgba(255,140,82,0.20);
+}
+
+.status-check {
+    background: var(--paper);
+    color: var(--orange-deep);
+}
+
+.sidebar-section-title {
+    color: var(--ink-muted);
+}
+
+.sidebar-nav-item {
+    color: var(--ink-soft);
+    background: transparent;
+    border-radius: 14px;
+}
+
+.sidebar-nav-item:hover {
+    background: var(--orange-tint);
+    color: var(--orange-deep);
+    transform: none;
+}
+
+.sidebar-nav-item.active {
+    background: var(--orange);
+    color: var(--paper);
+    font-weight: 650;
+    box-shadow: var(--shadow-small);
+}
+
+.nav-color {
+    display: none;
+}
+
+.sidebar-nav-item .nav-icon {
+    background: transparent !important;
+    color: inherit !important;
+}
+
+.sidebar-tool {
+    border-radius: 14px;
+}
+
+.purple-tool,
+.pink-tool {
+    background: var(--cream);
+}
+
+.sidebar-tool > span {
+    background: var(--orange-tint) !important;
+}
+
+.sidebar-tool strong {
+    color: var(--ink);
+}
+
+.sidebar-profile-card {
+    background: var(--cream);
+    border: none;
+}
+
+.profile-avatar {
+    background: var(--orange-tint);
+}
+
+.profile-star {
+    color: var(--orange);
+}
+
+.sidebar-version strong {
+    color: var(--orange-deep);
+}
+
+
+/* ================================================================
+   TOPBAR
+================================================================ */
+
+.breadcrumb strong {
+    color: var(--ink);
+}
+
+.small-sparkle {
+    color: var(--orange);
+}
+
+.ai-engine-badge {
+    background: var(--paper);
+    border-color: var(--line);
+    color: var(--ink-soft);
+}
+
+.engine-pulse {
+    background: var(--orange);
+    box-shadow: 0 0 0 4px rgba(255,140,82,0.18);
+}
+
+.topbar-icon-button {
+    background: var(--paper);
+    border-color: var(--line);
+    color: var(--ink-soft);
+}
+
+.topbar-icon-button:hover {
+    color: var(--orange-deep);
+    background: var(--orange-tint);
+    transform: none;
+}
+
+
+/* ================================================================
+   HERO — soft card with floating spheres, one accent button feel
+================================================================ */
+
+.hero {
+    background: linear-gradient(135deg, #FFEFE1, #FFE0C8);
+    color: var(--ink);
+    border: none;
+    box-shadow: var(--shadow);
+}
+
+.hero-background-shape {
+    border-color: rgba(255,255,255,0.5) !important;
+    background: rgba(255,255,255,0.25) !important;
+}
+
+.hero-mini-badge {
+    background: var(--paper);
+    border: none;
+    color: var(--orange-deep);
+    box-shadow: var(--shadow-small);
+}
+
+.sparkle {
+    color: var(--orange);
+}
+
+.hero-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.gradient-word {
+    color: var(--orange-deep);
+}
+
+.hero-description {
+    color: var(--ink-soft);
+}
+
+.hero-description strong {
+    color: var(--ink);
+}
+
+.hero-feature {
+    color: var(--ink-soft);
+}
+
+.feature-check {
+    background: var(--paper) !important;
+    color: var(--orange-deep);
+    box-shadow: var(--shadow-small);
+}
+
+.hero-stat {
+    border-right-color: rgba(46, 36, 28, 0.12);
+}
+
+.hero-stat strong {
+    font-family: var(--font-display);
+    color: var(--ink);
+}
+
+.hero-stat span {
+    color: var(--ink-muted);
+}
+
+.ai-ring {
+    border-color: rgba(255,255,255,0.6);
+}
+
+.ai-glow {
+    background: rgba(255,255,255,0.5);
+}
+
+.ai-brain {
+    background: var(--paper);
+    border: none;
+    box-shadow: var(--shadow);
+}
+
+.floating-ai-card {
+    background: var(--paper);
+    border: none;
+    backdrop-filter: none;
+    box-shadow: var(--shadow-small);
+}
+
+.floating-icon {
+    background: var(--orange-tint) !important;
+}
+
+.floating-ai-card strong {
+    color: var(--ink);
+}
+
+.floating-ai-card small {
+    color: var(--ink-muted);
+}
+
+.floating-check {
+    color: var(--orange);
+}
+
+
+/* ================================================================
+   SECTION HEADINGS
+================================================================ */
+
+.section-label {
+    color: var(--orange-deep) !important;
+}
+
+.section-heading h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.section-heading p {
+    color: var(--ink-soft);
+}
+
+
+/* ================================================================
+   UPLOAD CARD
+================================================================ */
+
+.upload-card {
+    background: var(--paper);
+    border: none;
+    box-shadow: var(--shadow);
+}
+
+.upload-main {
+    border: 2px dashed var(--line);
+    background: var(--cream);
+}
+
+.upload-main:hover {
+    border-color: var(--orange);
+    background: var(--orange-tint);
+}
+
+.upload-icon-circle {
+    background: var(--orange-tint);
+    color: var(--orange-deep);
+}
+
+.upload-icon-star {
+    background: var(--orange);
+    color: var(--paper);
+}
+
+.upload-main h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.upload-description,
+.upload-limit {
+    color: var(--ink-muted);
+}
+
+.choose-file-button {
+    background: var(--paper);
+    color: var(--orange-deep);
+    border: 1px solid var(--line);
+    box-shadow: var(--shadow-small);
+}
+
+.choose-file-button:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+}
+
+.analyze-button {
+    background: linear-gradient(135deg, var(--orange), var(--orange-deep));
+    color: var(--paper);
+    box-shadow: var(--shadow);
+    font-weight: 650;
+}
+
+.analyze-button:hover {
+    transform: translateY(-2px);
+}
+
+.selected-file-card {
+    background: var(--cream);
+    border: none;
+}
+
+.selected-file-icon {
+    background: var(--orange-tint);
+    color: var(--orange-deep);
+}
+
+.file-ready-icon {
+    color: var(--orange);
+}
+
+.status-small-dot {
+    background: var(--orange);
+}
+
+.benefit {
+    border-bottom-color: var(--line);
+}
+
+.benefit-icon {
+    background: var(--orange-tint) !important;
+    color: var(--orange-deep);
+}
+
+.benefit-text strong {
+    color: var(--ink);
+}
+
+.benefit-text p {
+    color: var(--ink-muted);
+}
+
+.benefit-check {
+    color: var(--orange);
+}
+
+
+/* ================================================================
+   ACTION GRID — one accent, white cards
+================================================================ */
+
+.action-card {
+    background: var(--paper);
+    border: none;
+    box-shadow: var(--shadow-small);
+    border-radius: 20px;
+}
+
+.action-card::after {
+    background: var(--orange) !important;
+    opacity: 0.06;
+}
+
+.action-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow);
+}
+
+.action-number {
+    color: var(--ink-muted);
+}
+
+.action-icon {
+    background: var(--orange-tint) !important;
+    color: var(--orange-deep);
+}
+
+.action-card h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.action-card p {
+    color: var(--ink-soft);
+}
+
+.action-button {
+    color: var(--orange-deep);
+}
+
+
+/* ================================================================
+   RESULTS AREA
+================================================================ */
+
+.results-heading h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.results-ready {
+    background: var(--orange-tint);
+    border: none;
+    color: var(--orange-deep);
+}
+
+.results-ready span {
+    background: var(--orange);
+}
+
+.empty-state {
+    background: var(--paper);
+    border: none;
+    box-shadow: var(--shadow-small);
+}
+
+.empty-circle {
+    background: var(--orange-tint) !important;
+    color: var(--orange-deep);
+    box-shadow: none;
+}
+
+.empty-state h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.empty-state p strong {
+    color: var(--orange-deep);
+}
+
+.empty-scroll-button {
+    background: var(--orange-tint);
+    color: var(--orange-deep);
+}
+
+
+/* ================================================================
+   RESULT CARD SHELL — one white card, one accent hairline
+================================================================ */
+
+.result-card {
+    background: var(--paper);
+    border: none;
+    box-shadow: var(--shadow);
+}
+
+.blue-top-border,
+.red-top-border,
+.green-top-border,
+.orange-top-border {
+    border-top: 3px solid var(--orange);
+}
+
+.result-card-top {
+    border-bottom-color: var(--line);
+}
+
+.result-icon {
+    background: var(--orange-tint) !important;
+    color: var(--orange-deep);
+}
+
+.result-label {
+    color: var(--orange-deep) !important;
+}
+
+.result-title-area h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.result-title-area p {
+    color: var(--ink-muted);
+}
+
+.copy-button {
+    background: var(--cream);
+    color: var(--ink-soft);
+}
+
+.copy-button:hover {
+    background: var(--orange-tint);
+    color: var(--orange-deep);
+}
+
+.new-mcq-button {
+    background: var(--orange);
+    color: var(--paper);
+}
+
+.new-mcq-button:hover {
+    background: var(--orange-deep);
+}
+
+.placeholder-icon {
+    background: var(--orange-tint) !important;
+    color: var(--orange-deep);
+}
+
+.result-placeholder h3 {
+    color: var(--ink-soft);
+    font-family: var(--font-display);
+    font-weight: 600;
+}
+
+.result-placeholder p {
+    color: var(--ink-muted);
+}
+
+
+/* ================================================================
+   SUMMARY TYPOGRAPHY
+================================================================ */
+
+.summary-content {
+    color: var(--ink-soft);
+}
+
+.summary-content h1,
+.summary-content h2,
+.summary-content h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+}
+
+.summary-content h1 { color: var(--ink); }
+.summary-content h2 { color: var(--ink); border-bottom-color: var(--line); }
+.summary-content h2::before { background: var(--orange); }
+.summary-content h3 { color: var(--orange-deep); }
+
+.summary-content li::marker {
+    color: var(--orange);
+}
+
+.summary-content strong {
+    color: var(--ink);
+}
+
+.summary-content .tech-word {
+    color: var(--orange-deep);
+    font-weight: 650;
+}
+
+.summary-content .year-word {
+    color: var(--ink-soft);
+    font-weight: 650;
+}
+
+.summary-content blockquote {
+    border-left-color: var(--orange);
+    background: var(--cream);
+    color: var(--ink-soft);
+}
+
+
+/* ================================================================
+   TOPICS — matches JS output
+================================================================ */
+
+.topic-count-badge {
+    background: var(--orange-tint);
+    color: var(--orange-deep);
+}
+
+.topic-card {
+    background: var(--cream);
+    border: none;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.topic-card:hover {
+    box-shadow: var(--shadow-small);
+}
+
+.topic-number {
+    background: var(--orange);
+    color: var(--paper);
+}
+
+.topic-content {
+    min-width: 0;
+    flex: 1;
+}
+
+.topic-content h4 {
+    color: var(--ink);
+    font-size: 14px;
+    font-weight: 650;
+    line-height: 1.5;
+}
+
+.topic-content span {
+    display: inline-block;
+    margin-top: 4px;
+    color: var(--ink-muted);
+    font-size: 10.5px;
+    font-weight: 650;
+}
+
+.topic-arrow {
+    color: var(--orange);
+}
+
+
+/* ================================================================
+   REVISION — matches JS output
+================================================================ */
+
+.revision-item {
+    background: var(--cream);
+    border: none;
+    padding: 16px 18px;
+    color: var(--ink-soft);
+}
+
+.revision-item::before {
+    content: none;
+}
+
+.revision-number {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+    border-radius: 50%;
+    background: var(--orange-tint);
+    color: var(--orange-deep);
+    font-size: 11px;
+    font-weight: 700;
+    vertical-align: middle;
+}
+
+.revision-text {
+    color: var(--ink-soft);
+}
+
+.revision-badge {
+    background: var(--orange-tint);
+    color: var(--orange-deep);
+}
+
+
+/* ================================================================
+   QUIZ DASHBOARD
+================================================================ */
+
+.quiz-dashboard {
+    background: var(--cream);
+    border-color: var(--line);
+}
+
+.purple-stat,
+.green-stat {
+    background: var(--paper);
+    border: none;
+}
+
+.quiz-stat-icon {
+    background: var(--orange-tint);
+}
+
+.quiz-stat-box strong {
+    font-family: var(--font-display);
+    color: var(--ink);
+}
+
+.quiz-progress-header strong {
+    color: var(--orange-deep);
+}
+
+.quiz-progress-track {
+    background: var(--paper);
+}
+
+.quiz-progress-bar {
+    background: linear-gradient(90deg, var(--orange), var(--peach));
+}
+
+
+/* ================================================================
+   MCQ — matches JS output exactly
+================================================================ */
+
+.mcq-card {
+    background: var(--cream);
+    border: none;
+    border-left: 4px solid var(--orange);
+    border-radius: 16px;
+    padding: 22px;
+    margin-bottom: 14px;
+}
+
+.question-badge {
+    display: inline-block;
+    background: var(--orange);
+    color: var(--paper);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 6px 12px;
+    border-radius: 20px;
+}
+
+.mcq-question {
+    margin: 12px 0 14px;
+    color: var(--ink);
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.5;
+}
+
+.mcq-options {
+    display: grid;
+    gap: 8px;
+}
+
+.mcq-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    background: var(--paper);
+    color: var(--ink-soft);
+    font-size: 13.5px;
+    font-weight: 600;
+    text-align: left;
+    cursor: pointer;
+    transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.mcq-option:hover:not(:disabled) {
+    border-color: var(--orange);
+    background: var(--orange-tint);
+}
+
+.option-letter {
+    width: 26px;
+    height: 26px;
+    min-width: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--orange-tint);
+    color: var(--orange-deep);
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.mcq-option.correct {
+    border-color: var(--orange);
+    background: var(--orange-tint);
+}
+
+.mcq-option.correct .option-letter {
+    background: var(--orange);
+    color: var(--paper);
+}
+
+.mcq-option.wrong {
+    border-color: var(--ink-muted);
+    background: var(--cream);
+}
+
+.mcq-option.wrong .option-letter {
+    background: var(--ink-muted);
+    color: var(--paper);
+}
+
+.mcq-feedback span {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 13px;
+    border-radius: 8px;
+    font-size: 12.5px;
+    font-weight: 650;
+}
+
+.correct-feedback span {
+    background: var(--orange-tint);
+    color: var(--orange-deep);
+}
+
+.wrong-feedback span {
+    background: var(--cream);
+    color: var(--ink-soft);
+}
+
+
+/* ================================================================
+   FINAL CTA / FOOTER
+================================================================ */
+
+.final-cta {
+    background: linear-gradient(135deg, var(--orange), var(--peach));
+}
+
+.cta-rainbow {
+    display: none;
+}
+
+.cta-icon {
+    background: rgba(255,255,255,0.22);
+}
+
+.cta-content span {
+    color: rgba(255,255,255,0.75);
+}
+
+.cta-content h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+}
+
+.cta-content h2 strong {
+    color: var(--paper);
+}
+
+.cta-content p {
+    color: rgba(255,255,255,0.85);
+}
+
+.back-top-button {
+    background: rgba(255,255,255,0.2);
+}
+
+.back-top-button:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+.footer {
+    color: var(--ink-muted);
+}
+
+.footer-logo {
+    background: var(--orange-tint);
+    color: var(--orange-deep);
+}
+
+.footer-brand strong {
+    color: var(--ink-soft);
+}
+
+.footer-dot,
+.footer-right {
+    color: var(--orange-deep);
+}
+
+
+/* ================================================================
+   TOAST / MODAL
+================================================================ */
+
+.toast {
+    background: var(--ink);
+    color: var(--cream);
+}
+
+.help-modal {
+    background: var(--paper);
+}
+
+.modal-close {
+    background: var(--orange-tint);
+    color: var(--orange-deep);
+}
+
+.modal-icon {
+    background: var(--orange-tint);
+}
+
+.help-modal h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    color: var(--ink);
+}
+
+.help-modal > p {
+    color: var(--ink-soft);
+}
+
+.modal-step {
+    background: var(--cream);
+    border: none;
+}
+
+.modal-step > span {
+    background: var(--orange);
+    color: var(--paper);
+}
+
+.modal-step strong {
+    color: var(--ink);
+}
+
+.modal-step small {
+    color: var(--ink-muted);
+}
+
+.modal-ok-button {
+    background: var(--orange);
+    color: var(--paper);
+}
+
+.modal-ok-button:hover {
+    transform: translateY(-2px);
+}
+
+
+/* ================================================================
+   ACCESSIBILITY
+================================================================ */
+
+:focus-visible {
+    outline: 2px solid var(--orange);
+    outline-offset: 2px;
+}
+/* =====================================================
+   BIGGER SIDEBAR TEXT
+   ===================================================== */
+
+.sidebar-tool strong {
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    line-height: 1.3 !important;
+}
+
+.sidebar-tool small {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    color: #7B7180 !important;
+}
+
+.sidebar-section-title {
+    font-size: 12px !important;
+    font-weight: 800 !important;
+    letter-spacing: 0.08em !important;
+}
+
+.sidebar-version {
+    font-size: 12px !important;
+}
+
+.sidebar-version strong {
+    font-size: 12px !important;
+}
+
+/* Bigger sidebar icons */
+
+.sidebar-tool > span {
+    width: 46px !important;
+    height: 46px !important;
+    min-width: 46px !important;
+    font-size: 21px !important;
+}
+
+/* More space between title and description */
+
+.sidebar-tool strong,
+.sidebar-tool small {
+    display: block !important;
+}
+
+.sidebar-tool small {
+    margin-top: 3px !important;
+}
+
+/* Bigger navigation text */
+
+.sidebar-nav-item {
+    font-size: 15px !important;
+}
+
+.sidebar-nav-item .nav-icon {
+    font-size: 18px !important;
+}
+/* =========================================================
+   STUDENT MODE — BIGGER TEXT
+   ========================================================= */
+
+.sidebar-tool.student-tool strong,
+.sidebar-tool.student-mode strong,
+.sidebar-tool[data-action="studentMode"] strong {
+    font-size: 15px !important;
+    font-weight: 800 !important;
+    line-height: 1.3 !important;
+    color: #302A43 !important;
+}
+
+.sidebar-tool.student-tool small,
+.sidebar-tool.student-mode small,
+.sidebar-tool[data-action="studentMode"] small {
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    color: #7B7180 !important;
+}
+/* =========================================================
+   STUDENT MODE - BIG TEXT FIX
+   ========================================================= */
+
+.sidebar-profile-card .profile-info {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    gap: 4px !important;
+}
+
+.sidebar-profile-card .profile-info strong {
+    display: block !important;
+    font-size: 15px !important;
+    line-height: 1.3 !important;
+    font-weight: 800 !important;
+    color: #302A43 !important;
+}
+
+.sidebar-profile-card .profile-info span {
+    display: block !important;
+    font-size: 12px !important;
+    line-height: 1.4 !important;
+    color: #7B7180 !important;
+}
+
+.sidebar-profile-card {
+    min-height: 70px !important;
+    padding: 12px 14px !important;
+}
+
+.sidebar-profile-card .profile-avatar {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    font-size: 20px !important;
+}
+/* =========================================================
+   SMART REVISION - PREMIUM CARDS
+   ========================================================= */
+
+#revisionContainer {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+    padding: 22px;
+}
+
+.revision-card {
+    position: relative;
+    padding: 22px;
+    border-radius: 22px;
+    background: linear-gradient(145deg, #fffaf5, #fff4ea);
+    border: 1px solid rgba(255, 145, 80, 0.16);
+    box-shadow: 0 8px 24px rgba(80, 45, 20, 0.07);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    overflow: hidden;
+}
+
+.revision-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(
+        180deg,
+        #ff7a45,
+        #ffb347,
+        #ff6fae
+    );
+}
+
+.revision-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 14px 32px rgba(80, 45, 20, 0.12);
+}
+
+.revision-card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.revision-number {
+    width: 42px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 14px;
+    background: #ffe7d8;
+    color: #ef6636;
+    font-size: 15px;
+    font-weight: 800;
+}
+
+.revision-badge {
+    padding: 7px 11px;
+    border-radius: 999px;
+    background: #fff0e7;
+    color: #ed7042;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.7px;
+}
+
+.revision-content {
+    color: #5d5149;
+    font-size: 16px;
+    line-height: 1.75;
+    font-weight: 500;
+}
+
+.revision-keyword {
+    color: #e85d2a;
+    font-weight: 800;
+}
+
+.revision-year {
+    color: #7c55d9;
+    font-weight: 800;
+}
+
+.revision-memory {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding-top: 13px;
+    border-top: 1px dashed rgba(120, 90, 70, 0.18);
+    color: #8b7d72;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.revision-memory span:first-child {
+    font-size: 15px;
+}
+
+.revision-empty {
+    grid-column: 1 / -1;
+    padding: 40px;
+    text-align: center;
+    border-radius: 20px;
+    background: #fff8f1;
+    color: #8b7d72;
+}
+
+.revision-empty span {
+    display: block;
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.revision-empty p {
+    margin: 0;
+    font-size: 15px;
+}
+
+
+/* Mobile */
+
+@media (max-width: 800px) {
+    #revisionContainer {
+        grid-template-columns: 1fr;
+        padding: 14px;
+        gap: 14px;
+    }
+
+    .revision-card {
+        padding: 18px;
+    }
+
+    .revision-content {
+        font-size: 15px;
+    }
+}
+/* ================================================================
+   STUDYLENS AI — modes.css
+   Makes Focus Mode and Student Mode actually DO something.
+   Link this AFTER your current theme CSS (sunrise.css / sunrise-v2
+   / sunrise-v3 / whichever you're using) in index.html:
+
+   <link rel="stylesheet" href="{{ url_for('static', filename='modes.css') }}">
+
+   Uses generic selectors/properties so it layers on top of any of
+   the theme files without fighting their colors.
+================================================================ */
+
+
+/* ================================================================
+   FOCUS MODE
+   body.focus-mode is toggled by script.js's focusModeBtn handler.
+   Hides everything on the dashboard except the results workspace,
+   using the ACTUAL section classes in the current index.html
+   (.hero, .quick-actions-section, .upload-benefits, .final-cta) —
+   the old rules referenced classes that no longer exist.
+================================================================ */
+
+body.focus-mode .hero,
+body.focus-mode .quick-actions-section,
+body.focus-mode .upload-benefits,
+body.focus-mode .final-cta,
+body.focus-mode .background-system {
+    display: none !important;
+}
+
+/* the upload card's "what you get back" column disappears above,
+   so let the upload form take the full card width instead of
+   leaving an empty gap where that column was */
+body.focus-mode .upload-card {
+    grid-template-columns: 1fr !important;
+}
+
+/* tighten up the top of the page now the hero is gone */
+body.focus-mode .dashboard-section {
+    padding-top: 4px;
+}
+
+/* visibly mark the Focus Mode button itself as active, even if
+   the current theme doesn't already style .tool-focus */
+body.focus-mode #focusModeBtn {
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
+}
+
+
+/* ================================================================
+   STUDENT MODE
+   body.student-mode is toggled by script.js's studentModeBtn
+   handler. No visual behavior existed anywhere before this.
+   Default chosen: larger, easier-to-read text across all study
+   content (summary, topics, revision, MCQs) — a plain, common
+   sense of "student mode" as a reading-comfort setting. Change the
+   font-size values below, or replace this section entirely, if you
+   had something else in mind.
+================================================================ */
+
+body.student-mode .summary-content,
+body.student-mode .summary-content p,
+body.student-mode .summary-content li {
+    font-size: 1.15em;
+    line-height: 1.95;
+}
+
+body.student-mode .summary-content h1,
+body.student-mode .summary-content h2,
+body.student-mode .summary-content h3 {
+    font-size: 1.12em;
+}
+
+body.student-mode .topic-content h4 {
+    font-size: 1.15em;
+}
+
+body.student-mode .revision-content,
+body.student-mode .revision-text {
+    font-size: 1.1em;
+    line-height: 1.85;
+}
+
+body.student-mode .mcq-question {
+    font-size: 1.15em;
+}
+
+body.student-mode .mcq-option {
+    font-size: 1.05em;
+    padding-top: 14px;
+    padding-bottom: 14px;
+}
+
+/* visibly mark the Student Mode button/card as active —
+   script.js already adds .active to #studentModeBtn, this just
+   makes sure something happens when it does even if the current
+   theme file doesn't style that state */
+#studentModeBtn.active {
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
+}
+
+#studentModeBtn.active .profile-info strong::after {
+    content: " · ON";
+    font-weight: 700;
+    opacity: 0.7;
+}
