@@ -61,16 +61,7 @@ def extract_pdf_text(uploaded_file):
     return "\n".join(pages)
 
 
-# =========================================================
-# GEMINI CALL WITH RETRY / CLEAR ERROR CLASSIFICATION
-# ---------------------------------------------------------
-# 503 (model overloaded) is transient -> worth a couple of
-# short retries with backoff.
-# 429 (quota exceeded) is NOT transient within the same day
-# -> retrying wastes time, so it's raised immediately with a
-# clear, specific message instead of the generic Gemini JSON
-# dump the frontend was showing before.
-# =========================================================
+
 
 class GeminiQuotaExceeded(Exception):
     pass
@@ -193,188 +184,7 @@ def analyze():
         # -------------------------------------------------
 
         prompt = f"""
-You are StudyLens AI, an advanced AI study assistant.
 
-Your job is to transform the student's PDF into
-clear, organized, exam-friendly study notes.
-
-==================================================
-SOURCE RULES
-==================================================
-
-1. Use ONLY information present in the PDF.
-2. Do NOT invent facts.
-3. Do NOT add outside knowledge.
-4. Preserve important technical terminology.
-5. Do not remove important definitions, classifications,
-   dates, protocols, standards, processes or examples.
-6. Do not simply copy the PDF.
-7. Rewrite the information into clear study notes.
-8. Use simple English suitable for a college student.
-
-==================================================
-VERY IMPORTANT SUMMARY FORMATTING
-==================================================
-
-The summary MUST be highly structured.
-
-NEVER write the entire summary as one paragraph.
-
-Every major topic MUST begin on a NEW LINE using:
-
-## Topic Name
-
-Subtopics MUST begin on a NEW LINE using:
-
-### Subtopic Name
-
-Use bullet points like:
-
-- Important point
-- Important point
-- Important point
-
-Use numbered lists when explaining steps:
-
-1. First step
-2. Second step
-3. Third step
-
-Leave a blank line between sections.
-
-Each paragraph should contain only 1–3 sentences.
-
-Do NOT use "--" to separate topics.
-
-Do NOT combine multiple topics into one paragraph.
-
-==================================================
-SUMMARY STRUCTURE
-==================================================
-
-Create the summary in this general format,
-but adapt it to the actual PDF:
-
-## 1. Main Concept
-
-Give a short explanation of the concept.
-
-### Key Points
-
-- Important point
-- Important point
-- Important point
-
-### Important Terms
-
-- **Term:** simple explanation
-- **Term:** simple explanation
-
-## 2. Second Concept
-
-Give a short explanation.
-
-### Key Points
-
-- Important point
-- Important point
-
-### Important Classification
-
-- Category 1
-- Category 2
-- Category 3
-
-## 3. Third Concept
-
-Continue the same style.
-
-==================================================
-CONTENT QUALITY
-==================================================
-
-The summary should include important information such as:
-
-- Definitions
-- Key concepts
-- Classifications
-- Important dates
-- Important numbers
-- Technical terms
-- Protocols
-- Standards
-- Devices
-- Processes
-- Comparisons
-- Examples appearing in the PDF
-
-Do not include information that is not supported by the PDF.
-
-For comparisons, use clear bullet points instead of a table.
-
-For example:
-
-### Circuit Switching
-
-- Dedicated communication path.
-- Connection is established before transmission.
-- Data transfer occurs through the established path.
-
-### Packet Switching
-
-- Data is divided into packets.
-- Packets are transmitted through the network.
-- The PDF describes Datagram and Virtual-Circuit networks.
-
-==================================================
-SUMMARY LENGTH
-==================================================
-
-For a large PDF, create a detailed but focused summary.
-
-Target approximately 1500–2500 words.
-
-Do not make it unnecessarily long.
-
-Do not repeat the same concept multiple times.
-
-==================================================
-IMPORTANT TOPICS
-==================================================
-
-Return exactly 10 important exam topics.
-
-Each topic should be a short, clear item.
-
-==================================================
-REVISION
-==================================================
-
-Return exactly 10 quick revision points.
-
-Each point should be short and useful for last-minute revision.
-
-==================================================
-MCQS
-==================================================
-
-Create exactly 8 exam-practice MCQs.
-
-Rules:
-
-- Use ONLY the PDF.
-- Exactly four options.
-- Options must be A, B, C and D.
-- Only one option is correct.
-- Mix conceptual and factual questions.
-- Avoid duplicate questions.
-- Questions should be useful for exam preparation.
-
-==================================================
-FINAL OUTPUT
-==================================================
-
-Return the following fields:
 
 SUMMARY
 IMPORTANT TOPICS
@@ -580,20 +390,6 @@ def generate_mcqs():
             }), 400
 
         prompt = f"""
-You are StudyLens AI.
-
-Create exactly 6 NEW exam-practice MCQs from the study material.
-
-Rules:
-
-- Use ONLY the supplied study material.
-- Do not use outside information.
-- Make every question different.
-- Each question must have exactly four options.
-- Options must be A, B, C and D.
-- Only one answer is correct.
-- Make questions useful for college exams.
-- Avoid repeating obvious questions.
 
 Study material:
 

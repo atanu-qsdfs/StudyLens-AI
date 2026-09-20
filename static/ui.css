@@ -1,13 +1,3 @@
-/* ================================================================
-   STUDYLENS AI — sunrise.css
-   Warm peach/cream premium theme — soft blurred spheres, one
-   confident orange accent, light airy surfaces.
-   ----------------------------------------------------------------
-   Loads AFTER style.css (swap the current theme <link> for this
-   file). Matches every class script.js actually renders. No extra
-   font import needed — reuses the Poppins/Inter already linked.
-================================================================ */
-
 :root {
 
     --orange:       #FF8C52;
